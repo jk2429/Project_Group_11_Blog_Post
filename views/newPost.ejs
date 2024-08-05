@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="css/styles.css">
+    <title>New Blog Post</title>
+</head>
+<body>
+
+	<%- include('header') %>
+    <%- include('navBar') %>
+	<div class="newBlog-container">
+	<form action="/newPost" enctype="multipart/form-data" method="post">
+		<label for="title">Title:</label>
+		<input type="text" name="title" id="title" required>
+		<br>
+		<label for="blog">Blog Content:</label>
+		<input type="text" name="blog" id="blog" required>
+		<br>
+		<label for="tag">Tags:</label>
+		<input type="text" name="tag" id="tag">
+		<br>
+		<label for="image">Image:</label>
+		<input type="file" name="image" id="image">
+		<button type="submit">Post Blog</button>
+	</form>
+</div>
+</body>
+</html>

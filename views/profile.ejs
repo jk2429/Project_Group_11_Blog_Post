@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="css/styles.css">
+    <title>Profile</title>
+</head>
+<body>
+
+	<%- include('header') %>
+    <%- include('navBar') %>
+	
+    <main>
+		<div class="profile-container">
+			<img src="<%- user.profilePicture %>" alt="Profile Picture.png">
+			<div class="profile-info">
+				<h2><%- user.username %></h2>
+				<p>Bio:<br><%- user.bio %></p>
+			</div>
+		</div>
+
+		<h2 style="text-align: center">My Blogs</h2>
+		<% blogPosts.forEach(function(post) { %>
+			<div class="blog-container">
+				<% if (post.image) { %>
+                    <img src="<%- post.image %>" alt="Blog Image">
+                <% } %>
+				<div class="blog-content">
+					<h3><%- post.title %></h3>
+					<p><%- post.content %></p>
+					<div class="blog-meta">
+						<% if (post.tags) { %>
+							<p><%- post.tags.join(', ') %></p>
+						<% } %>
+						<p>Posted on: <%- post.date %></p>
+						<p>Posted by: <%- user.username %></p>
+					</div>
+					<div class="blog-actions">
+						<form action="/editPost" method="get" style="display:inline;">
+							<input type="hidden" name="postId" value="<%- post._id %>">
+							<button type="submit">Edit</button>
+						</form>
+						<form action="/deletePost" method="post" style="display:inline;">
+							<input type="hidden" name="postId" value="<%- post._id %>">
+							<button type="submit">Delete</button>
+						</form>
+					</div>
+				</div>
+				
+            </div>
+            <hr>
+		<% }) %>
+	</main>
+</body>
+</html>
